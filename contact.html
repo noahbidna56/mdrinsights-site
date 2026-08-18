@@ -35,42 +35,82 @@
       <h2>See what full program value looks like for you.</h2>
     </div>
     <div class="contact-single">
-      <form>
+      <form id="contact-form">
         <div class="form-row">
           <div>
             <label for="fname">First name</label>
-            <input id="fname" type="text" placeholder="Jordan">
+            <input id="fname" data-entry="541686366" type="text" placeholder="Jordan" required>
           </div>
           <div>
             <label for="lname">Last name</label>
-            <input id="lname" type="text" placeholder="Reyes">
+            <input id="lname" data-entry="1503997079" type="text" placeholder="Reyes" required>
           </div>
         </div>
         <div>
           <label for="org">Health system</label>
-          <input id="org" type="text" placeholder="Your health system or GPO">
+          <input id="org" data-entry="199205405" type="text" placeholder="Your health system or GPO" required>
         </div>
         <div class="form-row">
           <div>
             <label for="email">Work email</label>
-            <input id="email" type="email" placeholder="you@organization.org">
+            <input id="email" data-entry="1079757033" type="email" placeholder="you@organization.org" required>
           </div>
           <div>
             <label for="role">Role</label>
-            <select id="role">
-              <option>Supply chain</option>
+            <select id="role" data-entry="1086101483">
+              <option>Supply Chain</option>
               <option>Sustainability</option>
-              <option>Value analysis</option>
+              <option>Value Analysis / Procurement</option>
               <option>Other</option>
             </select>
           </div>
         </div>
         <div>
           <label for="msg">Tell us more</label>
-          <textarea id="msg" placeholder="Tell us about what you want to accomplish with your reprocessing program."></textarea>
+          <textarea id="msg" data-entry="1174580599" placeholder="Tell us about what you want to accomplish with your reprocessing program."></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="justify-self:start;">Request a walkthrough</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
       </form>
+
+<script>
+(function () {
+  // Paste your Google Form's response URL here (ends in /formResponse)
+  var GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSesgrbXB19hpYngXjw40rvY8BF6PdDmbCVqCVPXnwUKaYSm_w/formResponse';
+
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+  var button = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    var data = new FormData();
+    form.querySelectorAll('[data-entry]').forEach(function (field) {
+      data.append('entry.' + field.dataset.entry, field.value);
+    });
+
+    status.className = 'form-status';
+    status.textContent = 'Sending...';
+    button.disabled = true;
+
+    // Google Forms doesn't return CORS headers, so the response is opaque.
+    // A completed request means the submission went through.
+    fetch(GOOGLE_FORM_URL, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () {
+        form.reset();
+        status.className = 'form-status is-ok';
+        status.textContent = 'Thank you. We will be in touch within one business day.';
+      })
+      .catch(function () {
+        status.className = 'form-status is-err';
+        status.textContent = 'Something went wrong. Please email us directly instead.';
+      })
+      .finally(function () { button.disabled = false; });
+  });
+})();
+</script>
     </div>
   </div>
 </section>
