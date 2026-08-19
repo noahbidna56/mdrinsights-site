@@ -358,3 +358,39 @@
   }
   .form-status.is-ok{ color:var(--leaf); }
   .form-status.is-err{ color:#C4586A; }
+
+  /* ---------- 404 page ---------- */
+  .not-found{ padding:80px 0 120px; }
+  .not-found-inner{ max-width:560px; }
+  .not-found h1{
+    font-size:clamp(28px,3.4vw,40px);
+    line-height:1.2;
+    margin:16px 0 18px;
+  }
+  .not-found .lede{
+    color:var(--ink-soft); font-size:16.5px; margin-bottom:34px;
+  }
+  .not-found-links{ display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* ---------- direct contact links ---------- */
+  .contact-direct{ margin-bottom:32px; }
+  .contact-direct-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--brass); margin-bottom:12px;
+  }
+  .contact-direct-links{ display:flex; gap:24px; flex-wrap:wrap; align-items:center; }
+  .contact-direct-links a{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; color:var(--violet-deep);
+    border-bottom:1px solid transparent;
+    transition:border-color .15s ease;
+  }
+  .contact-direct-links a:hover{ border-bottom-color:var(--violet); }
+  .contact-direct-links svg{ width:16px; height:16px; }
+
+  /* ---------- footer linkedin ---------- */
+  .foot-linkedin{ display:inline-flex; align-items:center; }
+  .foot-linkedin svg{ width:17px; height:17px; }
+  .foot-linkedin:hover{ color:var(--violet-deep); }
