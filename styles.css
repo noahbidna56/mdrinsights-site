@@ -57,13 +57,14 @@
   }
   .brand{display:flex; align-items:center; gap:10px; font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:16px; letter-spacing:-.01em;}
   .brand svg{width:26px; height:26px;}
-  .nav-links{display:flex; gap:36px; align-items:center;}
+  .nav-links{display:flex; gap:22px; align-items:center; margin-right:10px;}
   .nav-links a{
     font-size:14px; font-weight:500; color:var(--ink-soft);
     transition:color .15s ease;
   }
   .nav-links a:hover{color:var(--violet-deep);}
-  .nav-links a.btn-primary, .nav-links a.btn-primary:hover{color:#fff;}
+  .nav-links a.btn-primary, .nav-links a.btn-primary:hover,
+  .nav-links a.btn-login, .nav-links a.btn-login:hover{color:#fff;}
   .nav-links a.nav-btn{
     font-family:'IBM Plex Mono', monospace;
     font-size:12.5px;
@@ -92,6 +93,11 @@
     color:#fff;
   }
   .btn-primary:hover{transform:translateY(-1px); background:#5926C9;}
+  .btn-login{
+    background:#1F7A4C;
+    color:#fff;
+  }
+  .btn-login:hover{transform:translateY(-1px); background:#19653F;}
   .btn-ghost{
     border-color:var(--border);
     color:var(--ink);
@@ -394,3 +400,11 @@
   .foot-linkedin{ display:inline-flex; align-items:center; }
   .foot-linkedin svg{ width:17px; height:17px; }
   .foot-linkedin:hover{ color:var(--violet-deep); }
+
+  /* ---------- nav at narrow widths (4 items) ---------- */
+  @media(max-width:880px){
+    nav{ flex-wrap:wrap; justify-content:center; gap:14px; padding:16px 24px; }
+    .nav-links{ margin-right:0; gap:10px; flex-wrap:wrap; justify-content:center; }
+    .nav-links a.nav-btn{ font-size:12px; padding:7px 13px; }
+    .nav-links a.btn{ font-size:12px; padding:10px 16px; }
+  }
